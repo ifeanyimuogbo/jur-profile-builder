@@ -62,17 +62,24 @@ Note: This project is hosted on Netlify.\
 - The edit profile logic entails creating a new user object with the filled details if it does not already exist in local storage and saving/editing if it exists.
 - As a bonus, I added a profile aggregation view on the home page "/" and a delete function.\\
 
-If I had more time (a couple more days),\
-- I'd ensure thorough type safety
-- I'd be more conscientous with styling, responsiveness and organization
-- I'd make components more modular by splitting into atomic components as I originally intended.
-- I'd implement a slicker UI
-- I'd write tests
-- I'd extend the logic further to include a mock user authentication feature.
+My approach changed as I developed the app, as I couldn't fully put the atomic design pattern to use due to the compactness of the assessment and inadequacy of the set timing.
+
 
 
 ### b. Challenges faced
-### c
-#### i. If I had a couple more days
+It was a straightforward tasks. The only challenge I faced was 'time' as I was constrained to complete this in the fastest time possible.
+### c.
+#### i. If I had a couple more days/
+  - I'd ensure thorough type safety
+- I'd be more conscientous with styling, responsiveness and organization
+- I'd make components more modular by splitting into atomic components as I originally intended.
+- I'd implement a slicker UI
+- I'd extend the logic further to include a mock user authentication feature.
 #### ii. If I had a month
+ - I'd write unit and integration tests. 
+ - I'd run snapshot tests
+ 
 ### d. URL to the deployed App: https://jur-profile-builder.netlify.app/
+Home page: "/" /
+View Profile: "/view-profile/:id" where id is email address of user/
+Edit Profile: "/edit-profile" to create a new user profile and "/edit-profile/:id" to edit an existing profile
