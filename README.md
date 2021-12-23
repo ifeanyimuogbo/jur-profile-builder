@@ -4,7 +4,7 @@ I bootstrapped this project with [Create React App](https://github.com/facebook/
 
 `Note`: I started out writing my own code from scratch. However, I realized I could save more time by generating the project with CRA and doing customizations myself as this is a short (4-hours long) assessment.\
 
-** You need node version >= 12 to run this project,
+* You need node version >= 12 to run this project,
 
 ## Available Scripts
 
@@ -69,7 +69,7 @@ My approach changed as I developed the app, as I couldn't fully put the atomic d
 ### b. Challenges faced
 It was a straightforward task. The only challenge I faced was 'time' as I was constrained to complete this in the fastest time possible.
 ### c.
-#### i. If I had a couple more days/
+#### i. If I had a couple more days
   - I'd ensure thorough type safety
 - I'd be more conscientous with styling, responsiveness and organization
 - I'd make components more modular by splitting into atomic components as I originally intended.
@@ -78,8 +78,11 @@ It was a straightforward task. The only challenge I faced was 'time' as I was co
 #### ii. If I had a month
  - I'd write unit and integration tests. 
  - I'd run snapshot tests
+ - I'd ensure a11y and ensure best development practices
+ - I'd ensure full responsiveness
+ - I'd extend it's features
  
 ### d. URL to the deployed App: https://jur-profile-builder.netlify.app/
-Home page: "/" /
-View Profile: "/view-profile/:id" where id is email address of user/
-Edit Profile: "/edit-profile" to create a new user profile and "/edit-profile/:id" to edit an existing profile
+- Home page: "/"
+- View Profile: "/view-profile/:id" where id is email address of user
+ - Edit Profile: "/edit-profile" to create a new user profile and "/edit-profile/:id" to edit an existing profile
