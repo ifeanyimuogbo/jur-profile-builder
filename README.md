@@ -1,8 +1,8 @@
-# Getting Started with Create React App
+# How to run the appplication
 
-I bootstrapped thos project with [Create React App](https://github.com/facebook/create-react-app).
+I bootstrapped this project with [Create React App](https://github.com/facebook/create-react-app).
 
-`Note`: I started out writing my own React/Webpack code from scratch. However, I realized I could save more time by generating the project with CRA and doing customizations myself and this is a 4-hours long assessment.
+`Note`: I started out writing my own code from scratch. However, I realized I could save more time by generating the project with CRA and doing customizations myself as this is a short (4-hours long) assessment.
 ## Available Scripts
 
 In the project directory, you can run:
@@ -28,7 +28,6 @@ It correctly bundles React in production mode and optimizes the build for the be
 The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
 ### `npm run eject`
 
@@ -50,4 +49,4 @@ Note: This project is hosted on Netlify.\
 ### c
 #### i. If I had a couple more days
 #### ii. If I had a month
-###d. URL to the deployed App: https://jur-profile-builder.netlify.app/
+### d. URL to the deployed App: https://jur-profile-builder.netlify.app/
