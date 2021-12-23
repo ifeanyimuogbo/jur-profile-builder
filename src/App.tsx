@@ -1,8 +1,6 @@
 import './App.css';
 import React, {Suspense} from 'react';
 
-import {Button} from 'antd';
-import logo from './logo.svg';
 import {installRoutes} from './routes/install-routes';
 
 const App = (): JSX.Element => {
