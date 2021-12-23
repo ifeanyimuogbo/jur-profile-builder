@@ -2,7 +2,7 @@
 
 I bootstrapped thos project with [Create React App](https://github.com/facebook/create-react-app).
 
-`Note`: I started out writing my own React code from scratch. However, I realized I could save more time by generating the project with CRA and doing customizations myself and this is a 4-hours long assessment.
+`Note`: I started out writing my own React/Webpack code from scratch. However, I realized I could save more time by generating the project with CRA and doing customizations myself and this is a 4-hours long assessment.
 ## Available Scripts
 
 In the project directory, you can run:
