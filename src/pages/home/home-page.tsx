@@ -37,7 +37,8 @@ export const HomePage = () => {
                       navigate(`${paths.viewProfile}/${profile.email}`)
                     }
                   />,
-                ]}>
+                ]}
+              >
                 <Meta
                   avatar={<Avatar src="https://joeschmoe.io/api/v1/random" />}
                   title={`${profile.firstName} ${profile.lastName}`}
@@ -59,7 +60,8 @@ export const HomePage = () => {
                 type="ghost"
                 htmlType="button"
                 onClick={() => navigate(paths.editProfile)}
-                block>
+                block
+              >
                 Create/Edit a profile
               </Button>
             </>

@@ -60,7 +60,8 @@ export const ViewProfile: FC<IViewProfile> = memo((): JSX.Element => {
             type="primary"
             htmlType="button"
             onClick={() => navigate(`${paths.editProfile}/${id}`)}
-            block>
+            block
+          >
             Edit Profile
           </Button>
           <div style={{marginBottom: 16}} />
@@ -69,7 +70,8 @@ export const ViewProfile: FC<IViewProfile> = memo((): JSX.Element => {
             type="ghost"
             htmlType="button"
             onClick={() => navigate(paths.home)}
-            block>
+            block
+          >
             Go Home
           </Button>
         </Col>
