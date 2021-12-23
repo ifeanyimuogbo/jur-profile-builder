@@ -36,6 +36,7 @@ export function useEditProfile(id?: string) {
   const request = useMemo(() => new UserAPIRequestImpl(), []);
   const controller = useMemo(() => new UserAPIController(request), [request]);
 
+  // Edit profile
   const handleSubmitForm = async (data: IEditProfileForm) => {
     console.log(data);
     console.log(id);
@@ -43,6 +44,7 @@ export function useEditProfile(id?: string) {
     response && navigate(`${paths.viewProfile}/${id ? id : data.email}`);
   };
 
+  // Get profile data
   const getProfileData = useCallback(
     async (profileId: string) => {
       const response = await controller.viewProfile(profileId);

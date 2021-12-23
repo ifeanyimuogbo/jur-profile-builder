@@ -11,6 +11,7 @@ export function useViewProfile(id?: string) {
   );
   const [allProfiles, setAllProfiles] = useState<IViewProfileForm[] | null>();
 
+  // Get profile data
   const getProfileData = useCallback(
     async (profileId: string) => {
       const response = await controller.viewProfile(profileId);
@@ -33,6 +34,8 @@ export function useViewProfile(id?: string) {
   useEffect(() => {
     getAllProfiles();
   }, [getAllProfiles]);
+
+  // Delete a user
   const deleteUser = useCallback(
     async (id: string) => {
       const response = await controller.deleteProfile(id);
