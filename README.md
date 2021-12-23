@@ -62,6 +62,7 @@ Note: This project is hosted on Netlify.\
 - The edit profile logic entails creating a new user object with the filled details if it does not already exist in local storage and saving/editing if it exists.
 - As a bonus, I added a profile aggregation view on the home page "/" and a delete function.\\
 
+
 My approach changed as I developed the app, as I couldn't fully put the atomic design pattern to use due to the compactness of the assessment and inadequacy of the set timing.
 
 
