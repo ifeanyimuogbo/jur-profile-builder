@@ -48,6 +48,12 @@ Note: This project is hosted on Netlify.\
 
 ## Other assessment  questions
 ### a. Approach
+- Project is written in typescript because I do like to ensure type safety in my code (although currently, some loose typings <any> are used in the codebase because I was working with too much speed to allow for thoroughness.
+- Initially, I had run `npm init -y` to create and customize a vanilla React project with intention to go through the entire manual process of adding typescript, setting up webpack, installing needed dev dependencies and doing every other necessary manual intricate (personal) configuration, just so I could display my acumen and skill with React setup and its ecosystem. 
+- However, I had had to generate a typescript-react project with CRA 10 minutes into the exercise because it dawned on me that the exercise was meant to be a short one.
+- With modularity, reusability and testability in mind, I had started out hoping to adopt the atomic software design pattern and had proceeded to create a ui/ folder in project root where I planned to put reusable components which I'd categorize as 'atoms', 'molecules', 'organisms', 'layouts' or 'templates'.
+- I opted to use React Router for routing, Ant Design as UI library and Formik as Form component as requested and prettier as formatter.
+
 ### b. Challenges faced
 ### c
 #### i. If I had a couple more days
