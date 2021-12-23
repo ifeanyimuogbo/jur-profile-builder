@@ -33,10 +33,23 @@ export function useViewProfile(id?: string) {
   useEffect(() => {
     getAllProfiles();
   }, [getAllProfiles]);
+  const deleteUser = useCallback(
+    async (id: string) => {
+      const response = await controller.deleteProfile(id);
+      setAllProfiles(
+        allProfiles?.filter(
+          (profile: IViewProfileForm) => profile?.email !== id,
+        ),
+      );
+      response && alert(response);
+    },
+    [allProfiles, controller],
+  );
 
   return {
     profileDetails,
     getAllProfiles,
     allProfiles,
+    deleteUser,
   };
 }

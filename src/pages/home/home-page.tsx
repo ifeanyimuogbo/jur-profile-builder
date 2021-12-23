@@ -1,13 +1,19 @@
-import {EditOutlined, EyeFilled, PlusCircleFilled} from '@ant-design/icons';
+import {
+  DeleteFilled,
+  EditOutlined,
+  EyeFilled,
+  PlusCircleFilled,
+} from '@ant-design/icons';
 import {Row, Col, Avatar, Card, Divider, Button} from 'antd';
 import Meta from 'antd/lib/card/Meta';
+import {memo} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {useViewProfile} from '../../hooks/view-profile-hooks';
 import {paths} from '../../routes/paths';
 import {IViewProfileForm} from '../view-profile/view-profile-interface';
 
-export const HomePage = () => {
-  const {allProfiles} = useViewProfile();
+export const HomePage = memo(() => {
+  const {allProfiles, deleteUser} = useViewProfile();
   const navigate = useNavigate();
   return (
     <div>
@@ -20,7 +26,7 @@ export const HomePage = () => {
                 style={{width: 300, margin: 16}}
                 cover={
                   <img
-                    alt="example"
+                    alt="user"
                     src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80"
                   />
                 }
@@ -37,8 +43,11 @@ export const HomePage = () => {
                       navigate(`${paths.viewProfile}/${profile.email}`)
                     }
                   />,
-                ]}
-              >
+                  <DeleteFilled
+                    key="delete"
+                    onClick={() => deleteUser(profile.email)}
+                  />,
+                ]}>
                 <Meta
                   avatar={<Avatar src="https://joeschmoe.io/api/v1/random" />}
                   title={`${profile.firstName} ${profile.lastName}`}
@@ -47,7 +56,7 @@ export const HomePage = () => {
               </Card>
             </>
           ))}
-          {!!allProfiles && (
+          {!!allProfiles && allProfiles?.length > 0 && (
             <PlusCircleFilled
               style={{fontSize: '300%'}}
               onClick={() => navigate(paths.editProfile)}
@@ -60,8 +69,7 @@ export const HomePage = () => {
                 type="ghost"
                 htmlType="button"
                 onClick={() => navigate(paths.editProfile)}
-                block
-              >
+                block>
                 Create/Edit a profile
               </Button>
             </>
@@ -70,4 +78,4 @@ export const HomePage = () => {
       </Row>
     </div>
   );
-};
+});

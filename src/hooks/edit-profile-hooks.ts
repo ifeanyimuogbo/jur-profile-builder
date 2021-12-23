@@ -11,19 +11,22 @@ export function useEditProfile(id?: string) {
   const [form] = Form.useForm();
   const navigate = useNavigate();
 
-  const initialValues = {
-    firstName: '',
-    lastName: '',
-    email: '',
-    tagLine: '',
-    company: '',
-    role: '',
-    start: null,
-    end: null,
-    currentPosition: false,
-    description: '',
-    skills: [''],
-  };
+  const initialValues = useMemo(
+    () => ({
+      firstName: '',
+      lastName: '',
+      email: '',
+      tagLine: '',
+      company: '',
+      role: '',
+      start: null,
+      end: null,
+      currentPosition: false,
+      description: '',
+      skills: [''],
+    }),
+    [],
+  );
 
   const [initialProfileData, setInitialProfileData] =
     useState<IEditProfileForm>(initialValues);
@@ -34,9 +37,12 @@ export function useEditProfile(id?: string) {
   const controller = useMemo(() => new UserAPIController(request), [request]);
 
   const handleSubmitForm = async (data: IEditProfileForm) => {
+    console.log(data);
+    console.log(id);
     const response = await controller.editProfile(data.email, data);
     response && navigate(`${paths.viewProfile}/${id ? id : data.email}`);
   };
+
   const getProfileData = useCallback(
     async (profileId: string) => {
       const response = await controller.viewProfile(profileId);

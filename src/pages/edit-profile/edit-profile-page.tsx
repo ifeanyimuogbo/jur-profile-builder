@@ -20,8 +20,7 @@ export const EditProfile: FC<IEditProfile> = memo((): JSX.Element => {
                 type="dashed"
                 htmlType="button"
                 onClick={() => navigate(`${paths.viewProfile}/${id}`)}
-                block
-              >
+                block>
                 View Profile
               </Button>
               <div style={{marginBottom: 16}} />
@@ -32,8 +31,7 @@ export const EditProfile: FC<IEditProfile> = memo((): JSX.Element => {
             type="ghost"
             htmlType="button"
             onClick={() => navigate(paths.home)}
-            block
-          >
+            block>
             Go Home
           </Button>
           <div style={{marginBottom: 16}} />

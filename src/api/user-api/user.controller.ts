@@ -11,6 +11,14 @@ export class UserAPIController {
       return err;
     }
   }
+  async deleteProfile(id: string) {
+    try {
+      const response = await this.request.deleteProfile(id);
+      return response;
+    } catch (err: any) {
+      return err;
+    }
+  }
 
   async viewProfile(id: string) {
     try {
