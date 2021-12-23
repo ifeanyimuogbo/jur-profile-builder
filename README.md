@@ -45,9 +45,9 @@ Note: This project is hosted on Netlify.\
 
 
 ## Other assessment  questions
-a. Approach
-b. Challenges faced
-c
-i. If I had a couple more days
-ii. If I had a month
-d. URL to the deployed App: https://jur-profile-builder.netlify.app/
+### a. Approach
+### b. Challenges faced
+### c
+#### i. If I had a couple more days
+#### ii. If I had a month
+###d. URL to the deployed App: https://jur-profile-builder.netlify.app/
