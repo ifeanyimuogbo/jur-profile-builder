@@ -67,7 +67,7 @@ My approach changed as I developed the app, as I couldn't fully put the atomic d
 
 
 ### b. Challenges faced
-It was a straightforward tasks. The only challenge I faced was 'time' as I was constrained to complete this in the fastest time possible.
+It was a straightforward task. The only challenge I faced was 'time' as I was constrained to complete this in the fastest time possible.
 ### c.
 #### i. If I had a couple more days/
   - I'd ensure thorough type safety
