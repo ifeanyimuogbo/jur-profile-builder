@@ -7,7 +7,7 @@ I bootstrapped this project with [Create React App](https://github.com/facebook/
 
 In the project directory, you can run:
 
-### `npm start`
+### `yarn start`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
@@ -15,12 +15,21 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.\
 You will also see any lint errors in the console. [Uses prettier]
 
-### `npm test`
+### `yarn test`
 
 Launches the test runner in the interactive watch mode.\
 `Note`: I couldn't write jest/enzyme tests as I had to complete it within stipulated time.
 
-### `npm run build`
+### `yarn lint`
+
+Runs prettier linter to highlist formatting issues in the codebase.\
+
+### `yarn lint:fix`
+
+Runs the prettier linter utility to fix formatting issues in the codebase.\
+
+
+### `yarn build`
 
 Builds the app for production to the `build` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.
@@ -29,7 +38,7 @@ The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
 
-### `npm run eject`
+### `yarn eject`
 
 **Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
