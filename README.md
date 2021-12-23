@@ -2,7 +2,10 @@
 
 I bootstrapped this project with [Create React App](https://github.com/facebook/create-react-app).
 
-`Note`: I started out writing my own code from scratch. However, I realized I could save more time by generating the project with CRA and doing customizations myself as this is a short (4-hours long) assessment.
+`Note`: I started out writing my own code from scratch. However, I realized I could save more time by generating the project with CRA and doing customizations myself as this is a short (4-hours long) assessment.\
+
+** You need node version >= 12 to run this project,
+
 ## Available Scripts
 
 In the project directory, you can run:
@@ -48,11 +51,25 @@ Note: This project is hosted on Netlify.\
 
 ## Other assessment  questions
 ### a. Approach
-- Project is written in typescript because I do like to ensure type safety in my code (although currently, some loose typings <any> are used in the codebase because I was working with too much speed to allow for thoroughness.
-- Initially, I had run `npm init -y` to create and customize a vanilla React project with intention to go through the entire manual process of adding typescript, setting up webpack, installing needed dev dependencies and doing every other necessary manual intricate (personal) configuration, just so I could display my acumen and skill with React setup and its ecosystem. 
+- Project is written in typescript because I do like to ensure type safety in my code (although currently, some loose typings <any> are used in the codebase because I was working with too much speed to allow for thoroughness).
+- Initially, I had run `npm init -y` to create and customize a vanilla React project with intention to go through the entire manual process of adding typescript, setting up webpack, installing needed dev dependencies and doing every other necessary manual intricate (personal) configuration myself, just so I could display my acumen and skill with React setup and its ecosystem. 
 - However, I had had to generate a typescript-react project with CRA 10 minutes into the exercise because it dawned on me that the exercise was meant to be a short one.
 - With modularity, reusability and testability in mind, I had started out hoping to adopt the atomic software design pattern and had proceeded to create a ui/ folder in project root where I planned to put reusable components which I'd categorize as 'atoms', 'molecules', 'organisms', 'layouts' or 'templates'.
 - I opted to use React Router for routing, Ant Design as UI library and Formik as Form component as requested and prettier as formatter.
+- Note the separation of hooks into their separate folders and files. This was done with modularity and testability in mind.
+- Separation of API call logic into controllers and request files was also done with modularity and testability in mind.
+- Project was not written with responsiveness in mind as it was speedily done.
+- The edit profile logic entails creating a new user object with the filled details if it does not already exist in local storage and saving/editing if it exists.
+- As a bonus, I added a profile aggregation view on the home page "/" and a delete function.\\
+
+If I had more time (a couple more days),\
+- I'd ensure thorough type safety
+- I'd be more conscientous with styling, responsiveness and organization
+- I'd make components more modular by splitting into atomic components as I originally intended.
+- I'd implement a slicker UI
+- I'd write tests
+- I'd extend the logic further to include a mock user authentication feature.
+
 
 ### b. Challenges faced
 ### c
