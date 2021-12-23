@@ -1,25 +1,35 @@
-# Getting Started with Create React App
+# How to run the appplication
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+I bootstrapped this project with [Create React App](https://github.com/facebook/create-react-app).
 
+`Note`: I started out writing my own code from scratch. However, I realized I could save more time by generating the project with CRA and doing customizations myself as this is a short (4-hours long) assessment.
 ## Available Scripts
 
 In the project directory, you can run:
 
-### `npm start`
+### `yarn start`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.\
-You will also see any lint errors in the console.
+You will also see any lint errors in the console. [Uses prettier]
 
-### `npm test`
+### `yarn test`
 
 Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+`Note`: I couldn't write jest/enzyme tests as I had to complete it within stipulated time.
 
-### `npm run build`
+### `yarn lint`
+
+Runs prettier linter to highlist formatting issues in the codebase.\
+
+### `yarn lint:fix`
+
+Runs the prettier linter utility to fix formatting issues in the codebase.\
+
+
+### `yarn build`
 
 Builds the app for production to the `build` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.
@@ -27,20 +37,25 @@ It correctly bundles React in production mode and optimizes the build for the be
 The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+### `yarn eject`
 
 **Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Note: This project is hosted on Netlify.\
+[![Netlify Status](https://api.netlify.com/api/v1/badges/d27e78dd-5107-4eab-bf2d-935296d7af7a/deploy-status)](https://app.netlify.com/sites/jur-profile-builder/deploys)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Other assessment  questions
+### a. Approach
+- Project is written in typescript because I do like to ensure type safety in my code (although currently, some loose typings <any> are used in the codebase because I was working with too much speed to allow for thoroughness.
+- Initially, I had run `npm init -y` to create and customize a vanilla React project with intention to go through the entire manual process of adding typescript, setting up webpack, installing needed dev dependencies and doing every other necessary manual intricate (personal) configuration, just so I could display my acumen and skill with React setup and its ecosystem. 
+- However, I had had to generate a typescript-react project with CRA 10 minutes into the exercise because it dawned on me that the exercise was meant to be a short one.
+- With modularity, reusability and testability in mind, I had started out hoping to adopt the atomic software design pattern and had proceeded to create a ui/ folder in project root where I planned to put reusable components which I'd categorize as 'atoms', 'molecules', 'organisms', 'layouts' or 'templates'.
+- I opted to use React Router for routing, Ant Design as UI library and Formik as Form component as requested and prettier as formatter.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+### b. Challenges faced
+### c
+#### i. If I had a couple more days
+#### ii. If I had a month
+### d. URL to the deployed App: https://jur-profile-builder.netlify.app/
