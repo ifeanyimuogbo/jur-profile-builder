@@ -71,8 +71,7 @@ export const EditProfileForm = ({id}: IEditProfile) => {
       enableReinitialize
       onSubmit={(values, {setSubmitting}) => {
         onFinish(values);
-      }}
-    >
+      }}>
       {({
         values,
         errors,
@@ -92,8 +91,7 @@ export const EditProfileForm = ({id}: IEditProfile) => {
           layout="vertical"
           size="large"
           initialValues={values}
-          scrollToFirstError
-        >
+          scrollToFirstError>
           <Divider orientation="right">Bio</Divider>
           <Row gutter={16}>
             <Col span={12}>
@@ -105,8 +103,7 @@ export const EditProfileForm = ({id}: IEditProfile) => {
                     required: true,
                     message: 'Please, input your first name.',
                   },
-                ]}
-              >
+                ]}>
                 <Input />
               </Form.Item>
             </Col>
@@ -119,8 +116,7 @@ export const EditProfileForm = ({id}: IEditProfile) => {
                     required: true,
                     message: 'Please, input your last name.',
                   },
-                ]}
-              >
+                ]}>
                 <Input />
               </Form.Item>
             </Col>
@@ -138,9 +134,8 @@ export const EditProfileForm = ({id}: IEditProfile) => {
                 required: true,
                 message: 'Please input your E-mail!',
               },
-            ]}
-          >
-            <Input />
+            ]}>
+            <Input disabled={id ? true : false} />
           </Form.Item>
 
           <Form.Item
@@ -151,8 +146,7 @@ export const EditProfileForm = ({id}: IEditProfile) => {
                 required: true,
                 message: 'Please input tag line',
               },
-            ]}
-          >
+            ]}>
             <Input.TextArea showCount maxLength={100} />
           </Form.Item>
           <br />
@@ -167,8 +161,7 @@ export const EditProfileForm = ({id}: IEditProfile) => {
                     required: true,
                     message: 'Where do you work?',
                   },
-                ]}
-              >
+                ]}>
                 <Input />
               </Form.Item>
             </Col>
@@ -181,8 +174,7 @@ export const EditProfileForm = ({id}: IEditProfile) => {
                     required: true,
                     message: "What's your role at your workplace?",
                   },
-                ]}
-              >
+                ]}>
                 <Input />
               </Form.Item>
             </Col>
@@ -198,8 +190,7 @@ export const EditProfileForm = ({id}: IEditProfile) => {
                     required: true,
                     message: 'Please select start',
                   },
-                ]}
-              >
+                ]}>
                 <DatePicker />
               </Form.Item>
             </Col>
@@ -209,8 +200,7 @@ export const EditProfileForm = ({id}: IEditProfile) => {
                   noStyle
                   shouldUpdate={(prevValues, currentValues) =>
                     prevValues.currentPosition !== currentValues.currentPosition
-                  }
-                >
+                  }>
                   {({getFieldValue}) =>
                     getFieldValue('currentPosition') === false ? (
                       <Form.Item
@@ -223,8 +213,7 @@ export const EditProfileForm = ({id}: IEditProfile) => {
                             message: 'Please select end',
                           },
                         ]}
-                        style={{marginBottom: 8}}
-                      >
+                        style={{marginBottom: 8}}>
                         <DatePicker />
                       </Form.Item>
                     ) : (
@@ -249,8 +238,7 @@ export const EditProfileForm = ({id}: IEditProfile) => {
                 required: true,
                 message: 'Please input description of your work here.',
               },
-            ]}
-          >
+            ]}>
             <Input.TextArea showCount maxLength={300} />
           </Form.Item>
 
@@ -265,8 +253,7 @@ export const EditProfileForm = ({id}: IEditProfile) => {
                   return null;
                 },
               },
-            ]}
-          >
+            ]}>
             {(fields, {add, remove}, {errors: errors_}) => (
               <>
                 {fields.map((field, index) => (
@@ -276,8 +263,7 @@ export const EditProfileForm = ({id}: IEditProfile) => {
                       : formItemLayoutWithOutLabel)}
                     label={index === 0 ? 'Skills' : ''}
                     required={false}
-                    key={field.key}
-                  >
+                    key={field.key}>
                     <Form.Item
                       {...field}
                       validateTrigger={['onChange', 'onBlur']}
@@ -288,8 +274,7 @@ export const EditProfileForm = ({id}: IEditProfile) => {
                           message: 'Please input skill or delete this field.',
                         },
                       ]}
-                      noStyle
-                    >
+                      noStyle>
                       <Input
                         placeholder="Skill (e.g React)"
                         style={{width: '100%'}}
@@ -308,8 +293,7 @@ export const EditProfileForm = ({id}: IEditProfile) => {
                     type="dashed"
                     onClick={() => add()}
                     style={{width: '60%'}}
-                    icon={<PlusOutlined />}
-                  >
+                    icon={<PlusOutlined />}>
                     Add skill
                   </Button>
                   <Form.ErrorList errors={errors_} />
