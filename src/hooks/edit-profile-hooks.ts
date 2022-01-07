@@ -4,7 +4,10 @@ import {useCallback, useEffect, useMemo, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {UserAPIController} from '../api/user-api/user.controller';
 import {UserAPIRequestImpl} from '../api/user-api/user.request';
-import {IEditProfileForm} from '../pages/edit-profile/edit-profile.interface';
+import {
+  IEditProfileForm,
+  IWorkExperience,
+} from '../pages/edit-profile/edit-profile.interface';
 import {paths} from '../routes/paths';
 
 export function useEditProfile(id?: string) {
@@ -17,13 +20,18 @@ export function useEditProfile(id?: string) {
       lastName: '',
       email: '',
       tagLine: '',
-      company: '',
-      role: '',
-      start: null,
-      end: null,
-      currentPosition: false,
-      description: '',
-      skills: [''],
+
+      workExperiences: [
+        {
+          company: '',
+          role: '',
+          start: null,
+          end: null,
+          currentPosition: false,
+          description: '',
+          skills: [''],
+        },
+      ],
     }),
     [],
   );
@@ -38,8 +46,6 @@ export function useEditProfile(id?: string) {
 
   // Edit profile
   const handleSubmitForm = async (data: IEditProfileForm) => {
-    console.log(data);
-    console.log(id);
     const response = await controller.editProfile(data.email, data);
     response && navigate(`${paths.viewProfile}/${id ? id : data.email}`);
   };
@@ -48,17 +54,22 @@ export function useEditProfile(id?: string) {
   const getProfileData = useCallback(
     async (profileId: string) => {
       const response = await controller.viewProfile(profileId);
+      response &&
+        setInitialProfileData({
+          ...response,
+          workExperiences: response.workExperiences.map(
+            (workExperience: IWorkExperience) => ({
+              ...workExperience,
 
-      setInitialProfileData({
-        ...response,
-        start: moment(response.start),
-        end: moment(response?.end),
-      });
+              start: moment(workExperience?.start),
+              end: moment(workExperience?.end),
+            }),
+          ),
+        });
     },
     [controller],
   );
   useEffect(() => {
-    console.log(id);
     if (id) {
       getProfileData(id);
     }

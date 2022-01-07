@@ -9,8 +9,6 @@ export interface IUserAPIRequest extends BaseRequest {
 
 export class UserAPIRequestImpl extends BaseRequest implements IUserAPIRequest {
   async editProfile(id: string, data: any) {
-    console.log(id);
-    console.log(data);
     const users_ = await localStorage.getItem('users');
     let users = users_ ? JSON.parse(users_) : [];
     const index = users.findIndex((user: any) => user.email === id);
@@ -26,13 +24,8 @@ export class UserAPIRequestImpl extends BaseRequest implements IUserAPIRequest {
 
   async viewProfile(id: string) {
     const response = await localStorage.getItem('users');
-    console.log(response);
-    console.log(id);
 
     if (response) {
-      console.log(
-        JSON.parse(response).filter((user: any) => user.email === id)[0],
-      );
       return JSON.parse(response).filter((user: any) => user.email === id)[0];
     }
   }
