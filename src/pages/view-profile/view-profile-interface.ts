@@ -4,11 +4,13 @@ export interface IViewProfileForm {
   lastName: string;
   email: string;
   tagLine: string;
-  company: string;
-  role: string;
-  start: any;
-  end: any;
-  currentPosition?: boolean;
-  description: string;
-  skills: string[];
+  workExperiences: {
+    company: string;
+    role: string;
+    start: any;
+    end: any;
+    currentPosition?: boolean;
+    description: string;
+    skills: string[];
+  }[];
 }

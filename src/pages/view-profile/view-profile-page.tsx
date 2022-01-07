@@ -1,4 +1,13 @@
-import {Breadcrumb, Button, Col, Descriptions, Divider, Row} from 'antd';
+import {
+  Breadcrumb,
+  Button,
+  Card,
+  Col,
+  Descriptions,
+  Divider,
+  Row,
+  Statistic,
+} from 'antd';
 import moment from 'moment';
 import React, {FC, memo} from 'react';
 import {useNavigate, useParams} from 'react-router-dom';
@@ -16,7 +25,7 @@ export const ViewProfile: FC<IViewProfile> = memo((): JSX.Element => {
       <Divider orientation="left">View Profile</Divider>
 
       <Row justify="center" align="top">
-        <Col span={12}>
+        <Col xs={22} sm={20} md={18} lg={16} xl={12}>
           <Breadcrumb>
             <Breadcrumb.Item>Home</Breadcrumb.Item>
             <Breadcrumb.Item>{id}</Breadcrumb.Item>
@@ -35,33 +44,60 @@ export const ViewProfile: FC<IViewProfile> = memo((): JSX.Element => {
             </Descriptions.Item>
           </Descriptions>
           <br />
-          <Descriptions title="Work Experiences" layout="vertical">
-            <Descriptions.Item label="Company">
-              {profileDetails?.company}
-            </Descriptions.Item>
-            <Descriptions.Item label="Role">
-              {profileDetails?.role}
-            </Descriptions.Item>
-            <Descriptions.Item label="Duration">
-              {`${moment(profileDetails?.start).format('YYYY/MM/DD')} - ${
-                profileDetails?.currentPosition
-                  ? 'Current'
-                  : moment(profileDetails?.end).format('YYYY/MM/DD')
-              }`}
-            </Descriptions.Item>
-            <Descriptions.Item label="Description">
-              {profileDetails?.description}
-            </Descriptions.Item>
-            <Descriptions.Item label="Skills">
-              {profileDetails?.skills.join(', ')}
-            </Descriptions.Item>
-          </Descriptions>
+          <Col span={24}>
+            {profileDetails?.workExperiences?.map(
+              (workExperience: any, index: number) => (
+                <Col
+                  span={24}
+                  key={workExperience?.company + index}
+                  style={{marginBottom: 16}}>
+                  <Card>
+                    <Row gutter={16}>
+                      <Col span={12}>
+                        <Statistic
+                          title="Company"
+                          value={workExperience?.company}
+                        />
+                      </Col>
+                      <Col span={12}>
+                        <Statistic
+                          title="Duration"
+                          value={`${moment(workExperience?.start).format(
+                            'YYYY/MM/DD',
+                          )} - ${
+                            workExperience?.currentPosition
+                              ? 'Current'
+                              : moment(workExperience?.end).format('YYYY/MM/DD')
+                          }`}
+                        />
+                      </Col>
+                      <Col span={12}>
+                        <Statistic title="Role" value={workExperience?.role} />
+                      </Col>
+                      <Col span={12}>
+                        <Statistic
+                          title="Description"
+                          value={workExperience?.description}
+                        />
+                      </Col>
+                      <Col span={12}>
+                        <Statistic
+                          title="Skills"
+                          value={workExperience?.skills.join(', ')}
+                        />
+                      </Col>
+                    </Row>
+                  </Card>
+                </Col>
+              ),
+            )}
+          </Col>
+
           <Button
             type="primary"
             htmlType="button"
             onClick={() => navigate(`${paths.editProfile}/${id}`)}
-            block
-          >
+            block>
             Edit Profile
           </Button>
           <div style={{marginBottom: 16}} />
@@ -70,8 +106,7 @@ export const ViewProfile: FC<IViewProfile> = memo((): JSX.Element => {
             type="ghost"
             htmlType="button"
             onClick={() => navigate(paths.home)}
-            block
-          >
+            block>
             Go Home
           </Button>
         </Col>

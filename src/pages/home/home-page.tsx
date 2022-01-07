@@ -19,7 +19,7 @@ export const HomePage = memo(() => {
     <div>
       <Divider orientation="left">Jur Profile Builder</Divider>
       <Row justify="center">
-        <Col span={12}>
+        <Col xs={22} sm={20} md={18} lg={16} xl={12}>
           {allProfiles?.map((profile: IViewProfileForm) => (
             <>
               <Card
