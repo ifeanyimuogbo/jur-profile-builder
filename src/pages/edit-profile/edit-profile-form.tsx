@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
   Form,
   Input,
@@ -13,7 +13,12 @@ import {MinusCircleOutlined, PlusOutlined} from '@ant-design/icons';
 import {Formik} from 'formik';
 import {useEditProfile} from '../../hooks/edit-profile-hooks';
 
-import {IEditProfile} from './edit-profile.interface';
+import {
+  IEditProfile,
+  IEditProfileForm,
+  IWorkExperience,
+  IWorkExperienceComponent,
+} from './edit-profile.interface';
 
 const formItemLayout = {
   labelCol: {
@@ -40,13 +45,17 @@ const tailFormItemLayout = {
 export const EditProfileForm = ({id}: IEditProfile) => {
   const {initialProfileData, handleSubmitForm, form} = useEditProfile(id);
 
-  const onFinish = (fieldValues: any) => {
+  const onFinish = (fieldValues: IEditProfileForm) => {
     const values = {
       ...fieldValues,
-      start: fieldValues.start.format('YYYY-MM-DD'),
-      end: fieldValues?.end?.format('YYYY-MM-DD'),
+      workExperiences: fieldValues?.workExperiences?.map(
+        (workExperience: IWorkExperience) => ({
+          ...workExperience,
+          start: workExperience?.start?.format('YYYY-MM-DD'),
+          end: workExperience?.end?.format('YYYY-MM-DD'),
+        }),
+      ),
     };
-    console.log(fieldValues);
     handleSubmitForm(values);
   };
 
@@ -65,6 +74,169 @@ export const EditProfileForm = ({id}: IEditProfile) => {
     },
   };
 
+  const WorkExperience = ({
+    experienceName,
+    experienceRestField,
+  }: IWorkExperienceComponent) => (
+    <Col span={24} style={{backgroundColor: '#f9f7f7'}}>
+      <Row gutter={16}>
+        <Col span={12}>
+          <Form.Item
+            label="Company"
+            {...experienceRestField}
+            name={[experienceName, 'company']}
+            rules={[
+              {
+                required: true,
+                message: 'Where do you work?',
+              },
+            ]}>
+            <Input />
+          </Form.Item>
+        </Col>
+        <Col span={12}>
+          <Form.Item
+            name={[experienceName, 'role']}
+            label="Role"
+            rules={[
+              {
+                required: true,
+                message: "What's your role at your workplace?",
+              },
+            ]}>
+            <Input />
+          </Form.Item>
+        </Col>
+      </Row>
+      <Row gutter={16}>
+        <Col span={12}>
+          <Form.Item
+            label="Start"
+            name={[experienceName, 'start']}
+            rules={[
+              {
+                type: 'object' as const,
+                required: true,
+                message: 'Please select start',
+              },
+            ]}>
+            <DatePicker />
+          </Form.Item>
+        </Col>
+        <Col span={12}>
+          <Col span={24}>
+            <Form.Item
+              noStyle
+              shouldUpdate={(prevValues, currentValues) =>
+                prevValues.workExperiences[experienceName]?.currentPosition !==
+                currentValues.workExperiences[experienceName]?.currentPosition
+              }>
+              {({getFieldValue}) =>
+                getFieldValue('workExperiences')[experienceName]
+                  ?.currentPosition === false ? (
+                  <Form.Item
+                    label="End"
+                    name={[experienceName, 'end']}
+                    rules={[
+                      {
+                        type: 'object' as const,
+                        required: true,
+                        message: 'Please select end',
+                      },
+                    ]}
+                    style={{marginBottom: 8}}>
+                    <DatePicker />
+                  </Form.Item>
+                ) : (
+                  <Form.Item label="End" style={{marginBottom: 8}}>
+                    <Input value="Currently works here." disabled />
+                  </Form.Item>
+                )
+              }
+            </Form.Item>
+
+            <Form.Item
+              name={[experienceName, 'currentPosition']}
+              valuePropName="checked">
+              <Checkbox>I currently work here</Checkbox>
+            </Form.Item>
+          </Col>
+        </Col>
+      </Row>
+      <Form.Item
+        name={[experienceName, 'description']}
+        label="Description"
+        rules={[
+          {
+            required: true,
+            message: 'Please input description of your work here.',
+          },
+        ]}>
+        <Input.TextArea showCount maxLength={300} />
+      </Form.Item>
+
+      <Form.List
+        name={[experienceName, 'skills']}
+        rules={[
+          {
+            validator: async (_, names) => {
+              if (!names || names.length < 3) {
+                return Promise.reject(new Error('Enter at least 3 skills'));
+              }
+              return null;
+            },
+          },
+        ]}>
+        {(fields, {add, remove}, {errors: errors_}) => (
+          <>
+            {fields.map((field, index) => (
+              <Form.Item
+                {...(index === 0
+                  ? formItemLayoutSkill
+                  : formItemLayoutWithOutLabel)}
+                label={index === 0 ? 'Skills' : ''}
+                required={false}
+                key={field.key}>
+                <Form.Item
+                  {...field}
+                  validateTrigger={['onChange', 'onBlur']}
+                  rules={[
+                    {
+                      required: true,
+                      whitespace: true,
+                      message: 'Please input skill or delete this field.',
+                    },
+                  ]}
+                  noStyle>
+                  <Input
+                    placeholder="Skill (e.g React)"
+                    style={{width: '100%'}}
+                  />
+                </Form.Item>
+                {fields.length > 1 ? (
+                  <MinusCircleOutlined
+                    className="dynamic-delete-button"
+                    onClick={() => remove(field.name)}
+                  />
+                ) : null}
+              </Form.Item>
+            ))}
+            <Form.Item>
+              <Button
+                type="dashed"
+                onClick={() => add()}
+                style={{width: '60%'}}
+                icon={<PlusOutlined />}>
+                Add skill
+              </Button>
+              <Form.ErrorList errors={errors_} />
+            </Form.Item>
+          </>
+        )}
+      </Form.List>
+    </Col>
+  );
+
   return (
     <Formik
       initialValues={initialProfileData}
@@ -74,12 +246,9 @@ export const EditProfileForm = ({id}: IEditProfile) => {
       }}>
       {({
         values,
-        errors,
-        touched,
+
         handleChange,
         handleBlur,
-        isSubmitting,
-        /* and other goodies */
       }) => (
         <Form
           {...formItemLayout}
@@ -151,104 +320,15 @@ export const EditProfileForm = ({id}: IEditProfile) => {
           </Form.Item>
           <br />
           <Divider orientation="right">Work Experiences</Divider>
-          <Row gutter={16}>
-            <Col span={12}>
-              <Form.Item
-                name="company"
-                label="Company"
-                rules={[
-                  {
-                    required: true,
-                    message: 'Where do you work?',
-                  },
-                ]}>
-                <Input />
-              </Form.Item>
-            </Col>
-            <Col span={12}>
-              <Form.Item
-                name="role"
-                label="Role"
-                rules={[
-                  {
-                    required: true,
-                    message: "What's your role at your workplace?",
-                  },
-                ]}>
-                <Input />
-              </Form.Item>
-            </Col>
-          </Row>
-          <Row gutter={16}>
-            <Col span={12}>
-              <Form.Item
-                label="Start"
-                name="start"
-                rules={[
-                  {
-                    type: 'object' as const,
-                    required: true,
-                    message: 'Please select start',
-                  },
-                ]}>
-                <DatePicker />
-              </Form.Item>
-            </Col>
-            <Col span={12}>
-              <Col span={24}>
-                <Form.Item
-                  noStyle
-                  shouldUpdate={(prevValues, currentValues) =>
-                    prevValues.currentPosition !== currentValues.currentPosition
-                  }>
-                  {({getFieldValue}) =>
-                    getFieldValue('currentPosition') === false ? (
-                      <Form.Item
-                        label="End"
-                        name="end"
-                        rules={[
-                          {
-                            type: 'object' as const,
-                            required: true,
-                            message: 'Please select end',
-                          },
-                        ]}
-                        style={{marginBottom: 8}}>
-                        <DatePicker />
-                      </Form.Item>
-                    ) : (
-                      <Form.Item label="End" style={{marginBottom: 8}}>
-                        <Input value="Currently works here." disabled />
-                      </Form.Item>
-                    )
-                  }
-                </Form.Item>
-
-                <Form.Item name="currentPosition" valuePropName="checked">
-                  <Checkbox>I currently work here</Checkbox>
-                </Form.Item>
-              </Col>
-            </Col>
-          </Row>
-          <Form.Item
-            name="description"
-            label="Description"
-            rules={[
-              {
-                required: true,
-                message: 'Please input description of your work here.',
-              },
-            ]}>
-            <Input.TextArea showCount maxLength={300} />
-          </Form.Item>
-
           <Form.List
-            name="skills"
+            name="workExperiences"
             rules={[
               {
-                validator: async (_, names) => {
-                  if (!names || names.length < 3) {
-                    return Promise.reject(new Error('Enter at least 3 skills'));
+                validator: async (_, experiences) => {
+                  if (!experiences || experiences.length < 1) {
+                    return Promise.reject(
+                      new Error('Enter at least 1 work experience'),
+                    );
                   }
                   return null;
                 },
@@ -256,45 +336,42 @@ export const EditProfileForm = ({id}: IEditProfile) => {
             ]}>
             {(fields, {add, remove}, {errors: errors_}) => (
               <>
-                {fields.map((field, index) => (
+                {fields.map(({key, name, ...restField}, index) => (
                   <Form.Item
-                    {...(index === 0
-                      ? formItemLayoutSkill
-                      : formItemLayoutWithOutLabel)}
-                    label={index === 0 ? 'Skills' : ''}
+                    label={index === 0 ? 'Work experiences' : ''}
                     required={false}
-                    key={field.key}>
-                    <Form.Item
-                      {...field}
-                      validateTrigger={['onChange', 'onBlur']}
-                      rules={[
-                        {
-                          required: true,
-                          whitespace: true,
-                          message: 'Please input skill or delete this field.',
-                        },
-                      ]}
-                      noStyle>
-                      <Input
-                        placeholder="Skill (e.g React)"
-                        style={{width: '100%'}}
-                      />
-                    </Form.Item>
+                    key={key}>
+                    <WorkExperience
+                      experienceName={name}
+                      experienceRestField={restField}
+                    />
                     {fields.length > 1 ? (
-                      <MinusCircleOutlined
-                        className="dynamic-delete-button"
-                        onClick={() => remove(field.name)}
-                      />
+                      <span onClick={() => remove(name)}>
+                        {' '}
+                        <MinusCircleOutlined className="dynamic-delete-button" />{' '}
+                        Remove this work experience
+                      </span>
                     ) : null}
                   </Form.Item>
                 ))}
+                <br />
                 <Form.Item>
                   <Button
-                    type="dashed"
-                    onClick={() => add()}
-                    style={{width: '60%'}}
+                    type="ghost"
+                    onClick={() =>
+                      add({
+                        company: '',
+                        role: '',
+                        start: null,
+                        end: null,
+                        currentPosition: false,
+                        description: '',
+                        skills: [''],
+                      })
+                    }
+                    style={{width: '100%'}}
                     icon={<PlusOutlined />}>
-                    Add skill
+                    Add another work experience
                   </Button>
                   <Form.ErrorList errors={errors_} />
                 </Form.Item>

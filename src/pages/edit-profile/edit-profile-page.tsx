@@ -12,7 +12,7 @@ export const EditProfile: FC<IEditProfile> = memo((): JSX.Element => {
     <div>
       <Divider orientation="left">Edit Profile</Divider>
       <Row justify="center" align="top">
-        <Col span={12}>
+        <Col xs={22} sm={20} md={18} lg={16} xl={12}>
           <EditProfileForm id={id} />
           {id && (
             <>
